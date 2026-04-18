@@ -37,19 +37,7 @@ jobs:
           echo "$SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
-          # Clear destination and upload new build
           ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ec2-user@$HOST "rm -rf $DEST && mkdir -p $DEST"
           scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -r out/. ec2-user@$HOST:$DEST
 
-          rm -f /tmp/deploy_key
-
-      - name: Reload nginx
-        env:
-          SSH_KEY: ${{ secrets.HOST_SSH_KEY }}
-          HOST: ${{ secrets.HOST }}
-        run: |
-          echo "$SSH_KEY" > /tmp/deploy_key
-          chmod 600 /tmp/deploy_key
-          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ec2-user@$HOST \
-            "cd /home/ec2-user/deployment-config/${{ github.ref_name == 'main' && 'production' || 'staging' }} && docker compose exec nginx nginx -s reload"
           rm -f /tmp/deploy_key
