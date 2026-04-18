@@ -1,16 +1,16 @@
 :root {
   --bg: #ffffff;
-  --bg2: #fafafa;
-  --bg3: #fafafa;
-  --text: #1a1a1a;
-  --text2: #4a5568;
-  --text3: #718096;
-  --blue: #000000;
-  --blue-light: #f0f0f0;
-  --blue-mid: #d0d0d0;
-  --blue-dark: #1a1a1a;
-  --border: #e2e8f0;
-  --border2: #cbd5e0;
+  --bg2: #F5F5F6;
+  --bg3: #E1F5EE;
+  --text: #0A0F0D;
+  --text2: rgba(10, 15, 13, 0.65);
+  --text3: rgba(10, 15, 13, 0.45);
+  --blue: #1D9E75;
+  --blue-light: #E1F5EE;
+  --blue-mid: #9FE1CB;
+  --blue-dark: #0F6E56;
+  --border: rgba(10, 15, 13, 0.12);
+  --border2: rgba(10, 15, 13, 0.2);
   --radius-sm: 8px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -30,12 +30,31 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family: var(--font-body), sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: var(--bg2);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), sans-serif;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  animation: fadeUp 0.7s ease forwards 0.15s;
+  opacity: 0;
+}
+
+h3 {
+  animation: fadeUp 0.7s ease forwards 0.25s;
+  opacity: 0;
 }
 
 a {

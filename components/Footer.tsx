@@ -1,13 +1,18 @@
-import styles from "./Footer.module.css";
+"use client";
 
-const links = ["Privacy", "Terms", "Contact", "Docs"];
+import styles from "./Footer.module.css";
+import { useLanguage } from "@/lib/LanguageContext";
+import { t, Lang } from "@/lib/translations";
 
 const languages = [
-  { code: "en", label: "🇺🇸 English" },
-  { code: "id", label: "🇮🇩 Indonesia" },
+  { code: "en" as Lang, label: "🇺🇸 English" },
+  { code: "id" as Lang, label: "🇮🇩 Indonesia" },
 ];
 
 export default function Footer() {
+  const { lang, setLang } = useLanguage();
+  const tr = t[lang].footer;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -15,24 +20,24 @@ export default function Footer() {
           sken<span>ku</span>
         </div>
         <nav className={styles.links}>
-          {links.map((l) => (
-            <a key={l} href="#">
-              {l}
-            </a>
+          {tr.links.map((l) => (
+            <a key={l} href="#">{l}</a>
           ))}
         </nav>
         <div className={styles.right}>
           <div className={styles.langWrapper}>
             <GlobeIcon />
-            <select className={styles.langSelect} defaultValue="en">
+            <select
+              className={styles.langSelect}
+              value={lang}
+              onChange={(e) => setLang(e.target.value as Lang)}
+            >
               {languages.map((l) => (
-                <option key={l.code} value={l.code}>
-                  {l.label}
-                </option>
+                <option key={l.code} value={l.code}>{l.label}</option>
               ))}
             </select>
           </div>
-          <p className={styles.copy}>© 2026 skenku. All rights reserved.</p>
+          <p className={styles.copy}>{tr.copy}</p>
         </div>
       </div>
     </footer>

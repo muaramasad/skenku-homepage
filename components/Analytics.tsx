@@ -1,4 +1,8 @@
+"use client";
+
 import styles from "./Analytics.module.css";
+import { useLanguage } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 const rows = [
   { name: "Jakarta, ID", pct: 82, count: "1,891" },
@@ -9,17 +13,18 @@ const rows = [
 ];
 
 export default function Analytics() {
+  const { lang } = useLanguage();
+  const tr = t[lang].analytics;
+
   return (
     <section className={styles.section}>
-      <p className={styles.label}>Analytics</p>
-      <h2 className={styles.heading}>Know your product&apos;s journey</h2>
-      <p className={styles.sub}>
-        Every scan tells a story. skenku turns scan data into actionable intelligence.
-      </p>
+      <p className={styles.label}>{tr.label}</p>
+      <h2 className={styles.heading}>{tr.heading}</h2>
+      <p className={styles.sub}>{tr.sub}</p>
       <div className={styles.demo}>
         <div className={styles.demoHeader}>
-          <span className={styles.demoTitle}>Top scan locations — last 30 days</span>
-          <span className={styles.demoTotal}>4,812 total scans</span>
+          <span className={styles.demoTitle}>{tr.demo_title}</span>
+          <span className={styles.demoTotal}>{tr.demo_total}</span>
         </div>
         {rows.map((r) => (
           <div key={r.name} className={styles.row}>

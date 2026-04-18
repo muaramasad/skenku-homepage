@@ -1,13 +1,13 @@
-import styles from "./Stats.module.css";
+"use client";
 
-const stats = [
-  { value: "12M+", label: "QR scans tracked" },
-  { value: "99.9%", label: "Uptime SLA" },
-  { value: "500+", label: "Brands protected" },
-  { value: "<200ms", label: "Scan response" },
-];
+import styles from "./Stats.module.css";
+import { useLanguage } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function Stats() {
+  const { lang } = useLanguage();
+  const stats = t[lang].stats;
+
   return (
     <section className={styles.section}>
       <div className={styles.grid}>
