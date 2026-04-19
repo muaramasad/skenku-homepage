@@ -109,7 +109,7 @@ export default function V2() {
               <polyline points="104,298 109,303 117,292" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
               <text x="127" y="294" fontFamily="sans-serif" fontSize="10" fill="white" fontWeight="700">Authentic Product</text>
               <text x="127" y="308" fontFamily="sans-serif" fontSize="9" fill="rgba(255,255,255,0.75)">Verified · 2 sec ago</text>
-              <rect x="204" y="38" width="68" height="22" rx="11" fill="#EF4444"/>
+              <rect x="204" y="38" width="68" height="22" rx="11" fill="#2837c3"/>
               <circle cx="216" cy="49" r="3" fill="white" opacity="0.9"/>
               <text x="244" y="53" fontFamily="sans-serif" fontSize="8.5" fill="white" textAnchor="middle" fontWeight="600">VERIFYING</text>
             </svg>
