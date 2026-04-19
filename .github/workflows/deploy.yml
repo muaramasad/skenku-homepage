@@ -37,7 +37,10 @@ jobs:
           echo "$SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
+          COMPOSE_DIR=$([[ "${{ github.ref_name }}" == "main" ]] && echo "/home/ec2-user/deployment-config/production" || echo "/home/ec2-user/deployment-config/staging")
+
           ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ec2-user@$HOST "rm -rf $DEST && mkdir -p $DEST"
           scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -r out/. ec2-user@$HOST:$DEST
+          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ec2-user@$HOST "cd $COMPOSE_DIR && docker-compose restart nginx"
 
           rm -f /tmp/deploy_key
